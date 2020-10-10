@@ -6,9 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import technicalblog.model.Post;
 import technicalblog.service.PostService;
-
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -18,7 +16,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String getAllPosts(Model model) {
-        ArrayList<Post> posts = postService.getAllPosts();
+        List<Post> posts = postService.getAllPosts();
         model.addAttribute("posts", posts);
         return "index";
     }

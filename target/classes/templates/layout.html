@@ -4,17 +4,19 @@
     <body>
         <header th:fragment="logged-out" th:remove="tag">
             <header>
-                <a ref="users/login.html" th:href="@{users/login}">Login</a>
-                <a ref="users/registration.html" th:href="@{users/registration}">Registration</a>
+                <a ref="users/login.html" th:href="@{/users/login}">Login</a>
+                <a ref="users/registration.html" th:href="@{/users/registration}">Registration</a>
             </header>
         </header>
 
         <header th:fragment="logged-in" th:remove="tag">
+            <a href="posts/create.html" th:href="@{posts/create}">Create post</a>
             <header>
-                <form method="post" th:action="@{users/logout}">
+                <form method="post" th:action="@{/users/logout}">
                     <input type="submit" value="Logout">
                 </form>
             </header>
+
         </header>
 
     </body>

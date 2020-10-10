@@ -1,50 +1,34 @@
 package technicalblog.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import technicalblog.model.Post;
+import technicalblog.repository.PostRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.TypedQuery;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PostService {
-    public ArrayList<Post> getAllPosts() {
 
-        ArrayList<Post> posts = new ArrayList<>();
+    @Autowired
+    private PostRepository postRepository;
 
-        Post post1 = new Post();
-        post1.setTitle("Post 1");
-        post1.setBody("Post body 1");
-        post1.setDate(new Date());
-
-        Post post2 = new Post();
-        post2.setTitle("Post 2");
-        post2.setBody("Post body 2");
-        post2.setDate(new Date());
-
-        Post post3 = new Post();
-        post3.setTitle("Post 3");
-        post3.setBody("Post body 3");
-        post3.setDate(new Date());
-
-        posts.add(post1);
-        posts.add(post2);
-        posts.add(post3);
-
-        return posts;
-    };
-
-    public ArrayList<Post> getOnePost() {
-
-        ArrayList<Post> posts = new ArrayList<>();
-
-        Post post1 = new Post();
-        post1.setTitle("This is your first post");
-        post1.setBody("This your first post. It has some valid comment.");
-        post1.setDate(new Date());
-
-        posts.add(post1);
-        return posts;
+    public List<Post> getAllPosts() {
+        return postRepository.getAllPosts();
     }
 
+    public Post getOnePost() {
+        return postRepository.getOnePost();
+    }
+
+    public void createPost(Post newPost) {
+
+    }
 }
