@@ -59,9 +59,9 @@ public class UserContoller {
 //        return "posts/create";
 //    }
 
-    @RequestMapping("/posts/create.html")
-    public String createPost(){
-        return "create.html";
-    }
+//    @RequestMapping("/posts/create.html")
+//    public String createPost(){
+//        return "create.html";
+//    }
 
 }
