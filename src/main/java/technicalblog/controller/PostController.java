@@ -3,10 +3,7 @@ package technicalblog.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import technicalblog.model.Post;
 import technicalblog.repository.PostRepository;
 import technicalblog.service.PostService;
@@ -55,15 +52,7 @@ public class PostController {
         return "posts/edit";
     }
 
-//    @RequestMapping(value = "/editPost", method = RequestMethod.PUT)
-//    public String editPostSubmit(@PathVariable("postId") Integer postId, Post updatedPost) {
-////        public String editPostSubmit(@RequestParam(name="postId") Integer postId, Post updatedPost) {
-//        updatedPost.setId(postId);
-//        postService.updatePost(updatedPost);
-//        return "redirect:/posts";
-//    }
-
-    @RequestMapping(value = "/editPost", method = RequestMethod.POST)
+    @RequestMapping(value = "/editPost", method = RequestMethod.PUT)
     public String editPostSubmit(@RequestParam(name="postId") Integer postId, Post updatedPost) {
         updatedPost.setId(postId);
         postService.updatePost(updatedPost);
@@ -71,7 +60,8 @@ public class PostController {
     }
 
     @RequestMapping(value = "/deletePost", method = RequestMethod.DELETE)
-    public String deletePostSubmit(@RequestParam(name="postId") Long postId) {
+    public String deletePostSubmit(@RequestParam(name="postId") Integer postId) {
+        postService.deletePost(postId);
         return "redirect:/posts";
     }
 }
