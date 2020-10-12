@@ -1,15 +1,52 @@
 package technicalblog.model;
 
+import org.springframework.data.repository.cdi.Eager;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id")
+  private Integer id;
+
+  @Column(name = "username")
   private String username;
+
+  @Column(name = "password")
   private String password;
 
-  public String getUserName() {
+  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinColumn(name = "profile_id")
+  private UserProfile profile;
+
+
+  public UserProfile getProfile() {
+    return profile;
+  }
+
+  public void setProfile(UserProfile profile) {
+    this.profile = profile;
+  }
+
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getUsername() {
     return username;
   }
 
-  public void setUserName(String userName) {
-    this.username = userName;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getPassword() {
