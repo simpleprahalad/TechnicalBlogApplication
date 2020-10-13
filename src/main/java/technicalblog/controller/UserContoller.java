@@ -39,7 +39,8 @@ public class UserContoller {
 
     @RequestMapping(value = "users/login", method = RequestMethod.POST)
     public String loginUser(User user) {
-        if(userService.login(user)) {
+        User exisitingUser = userService.login(user);
+        if(exisitingUser != null) {
             return "redirect:/posts";
         } else {
             return "users/login";
